@@ -1,5 +1,5 @@
 const articulos  = [
-    // {sku: 1, descripcion: "bujia K4M Megane", precio:910 , rubro: "encendido" , img: "../Imagenes/repuestoMuestra.jpg"},
+    {sku: 1, descripcion: "bujia K4M Megane", precio:910 , rubro: "encendido" , img: "../Imagenes/repuestoMuestra.jpg"},
     {sku: 2, descripcion: "manija interior Logan", precio: 3800, rubro: "accesorios" , img: "../Imagenes/repuestoMuestra.jpg"},
     {sku: 3, descripcion: "kit cremallera embrague R21", precio: 1010, rubro:"accesorios" , img: "../Imagenes/repuestoMuestra.jpg"},
     {sku: 4, descripcion: "pata caja R19", precio: 4840, rubro: "motor" , img: "../Imagenes/repuestoMuestra.jpg"},
@@ -16,8 +16,6 @@ const encontrado = document.querySelector("#listaProductos");
 const buscador = document.querySelector("#buscador");
 
 const buscar = document.querySelector("#buscar");
-
-const contenedorCarrito = document.querySelector(".productosEnElCarrito");
 
 const carrito = []
 
@@ -48,17 +46,6 @@ const carrito = []
       boton.addEventListener("click", ()=>
       {
         
-        let agregarAlCarrito = articulos.find(el =>{
-          return el.sku = `${item.sku}`;
-        })
-
-        carrito.push(agregarAlCarrito);
-        console.log(carrito);
-
-        
-        
-        
-       
       })
 
     }
@@ -80,4 +67,5 @@ buscar.addEventListener("click", ()=>
     console.log(nuevaBusqueda);
   }
 )
+
 
