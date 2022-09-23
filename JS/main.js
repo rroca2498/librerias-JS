@@ -1,5 +1,5 @@
 const articulos  = [
-    {sku: 1, descripcion: "bujia K4M Megane", precio:910 , rubro: "encendido" , img: "../Imagenes/repuestoMuestra.jpg"},
+    // {sku: 1, descripcion: "bujia K4M Megane", precio:910 , rubro: "encendido" , img: "../Imagenes/repuestoMuestra.jpg"},
     {sku: 2, descripcion: "manija interior Logan", precio: 3800, rubro: "accesorios" , img: "../Imagenes/repuestoMuestra.jpg"},
     {sku: 3, descripcion: "kit cremallera embrague R21", precio: 1010, rubro:"accesorios" , img: "../Imagenes/repuestoMuestra.jpg"},
     {sku: 4, descripcion: "pata caja R19", precio: 4840, rubro: "motor" , img: "../Imagenes/repuestoMuestra.jpg"},
@@ -17,10 +17,12 @@ const buscador = document.querySelector("#buscador");
 
 const buscar = document.querySelector("#buscar");
 
+const contenedorCarrito = document.querySelector(".productosEnElCarrito");
+
+const carrito = []
+
   function imprimir(repuesto){
     let codigo = "";
-
-    let contador = 0;
 
     for (const item of repuesto){
 
@@ -32,9 +34,7 @@ const buscar = document.querySelector("#buscar");
 
         <p class="precio">${item.precio}</p>
 
-        <input type="number" id="cantidad${contador}">
-
-        <button type="submit" id="agregar${contador}">Agregar</button>
+        <button type="submit" id="agregar${item.sku}">Agregar</button>
 
     </div>
         
@@ -43,7 +43,23 @@ const buscar = document.querySelector("#buscar");
 
       encontrado.innerHTML += codigo;
 
-        contador++;
+      const boton = document.querySelector(`#agregar${item.sku}`);
+
+      boton.addEventListener("click", ()=>
+      {
+        
+        let agregarAlCarrito = articulos.find(el =>{
+          return el.sku = `${item.sku}`;
+        })
+
+        carrito.push(agregarAlCarrito);
+        console.log(carrito);
+
+        
+        
+        
+       
+      })
 
     }
 }
