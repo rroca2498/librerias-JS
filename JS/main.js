@@ -62,7 +62,18 @@ const carrito = [];
     const item = articulos.find((prod) => prod.sku === prodId);
     carrito.push(item);
     console.log(carrito);
+
+    //configuracion del local storage ---------------------------------------------------
+
+    const carritoGuardado = carrito;
+
+    let carritoGuardadoJson = JSON.stringify(carritoGuardado);
+
+    localStorage.setItem("guardado", carritoGuardadoJson);
+
+    const carritoAObjeto = JSON.parse(localStorage.getItem('guardado'));
     
+    // fin de la configuracion del local storage------------------------------------------
 
     const itemCarrito = document.createElement('p');
 
@@ -74,6 +85,8 @@ const carrito = [];
 
     
   }
+ 
+ 
 
  
   
