@@ -17,55 +17,63 @@ const buscador = document.querySelector("#buscador");
 
 const buscar = document.querySelector("#buscar");
 
-const carrito = []
+const desplegarCarrito = document.querySelector(".productosEnElCarrito");
 
-  function imprimir(repuesto){
-    let codigo = "";
+const carrito = [];
 
-    for (const item of repuesto){
+  articulos.forEach((producto) => {
+    const div = document.createElement('div');
+    div.classList.add('producto');
 
-        codigo= `<div class="col-3 producto text-center">
+    // Quera abreviarlo asi pero no me funcionabam en que me estoy equivocando?
 
-        <img src="${item.img}" alt="Imagen de ${item.descripcion}">
+    // let {sku,descripcion,precio,rubro,img} = item;
 
-        <p>${item.descripcion}</p>
+    // div.innerHTML = `
+    // <img src="../Imagenes/repuestoMuestra.jpg" alt="Imagen de ${descripcion}">
+    // <h3>${descripcion}</h3>
+    // <p>$${precio}</p>
+    // <button id="agregar${sku}">Agregar</button>
+    // `
+    
+    div.innerHTML = `
+    <img src="../Imagenes/repuestoMuestra.jpg" alt="Imagen de ${producto.descripcion}">
+    <h3>${producto.descripcion}</h3>
+    <p>$${producto.precio}</p>
+    <button id="agregar${producto.sku}">Agregar</button>
+    `
+    encontrado.appendChild(div);
 
-        <p class="precio">${item.precio}</p>
+    const boton = document.getElementById(`agregar${producto.sku}`);
 
-        <button type="submit" id="agregar${item.sku}">Agregar</button>
+    boton.addEventListener("click", () => {
 
-    </div>
-        
-        
-        `;
+      agregarAlCarrito(producto.sku);
+      console.log(producto.sku);
+    })
 
-      encontrado.innerHTML += codigo;
+  })
 
-      const boton = document.querySelector(`#agregar${item.sku}`);
+  const agregarAlCarrito = (prodId) => {
+    
 
-      boton.addEventListener("click", ()=>
-      {
-        
-      })
+    
 
-    }
-}
+    const item = articulos.find((prod) => prod.sku === prodId);
+    carrito.push(item);
+    console.log(carrito);
+    
 
-function busqueda(productos,palabra){
+    const itemCarrito = document.createElement('p');
 
-  return productos.filter(el =>
-  {
-    return el.descripcion.includes(palabra);
-  });
-}
+      itemCarrito.innerHTML = `
+      
+      Usted tiene 1 unidad de ${item.descripcion} que tiene un valor de $${item.precio}
+      `
+      desplegarCarrito.appendChild(itemCarrito);
 
-buscar.addEventListener("click", ()=>
-  {
-    encontrado.innerHTML = "";
-    let nuevaBusqueda = busqueda(articulos,buscador.value.toLowerCase());
-    imprimir(nuevaBusqueda);
-    console.log(nuevaBusqueda);
+    
   }
-)
 
-
+ 
+  
