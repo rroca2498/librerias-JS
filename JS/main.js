@@ -50,6 +50,14 @@ const carrito = [];
 
       agregarAlCarrito(producto.sku);
       console.log(producto.sku);
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Producto agregado',
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
 
   })
